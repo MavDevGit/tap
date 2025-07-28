@@ -1,0 +1,42 @@
+{
+  "name": "juego-figuras-ninos",
+  "version": "1.0.0",
+  "description": "Juego educativo interactivo para niños de 2 años para aprender figuras y colores",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Build completado - archivos estáticos listos'",
+    "start": "npx serve .",
+    "vercel-build": "echo 'Build para Vercel completado'"
+  },
+  "keywords": [
+    "educativo",
+    "niños",
+    "figuras",
+    "colores",
+    "juego",
+    "interactivo",
+    "html5",
+    "css3",
+    "javascript"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/juego-figuras-ninos.git"
+  },
+  "homepage": "https://juego-figuras-ninos.vercel.app",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+} 

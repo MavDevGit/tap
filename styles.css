@@ -1,0 +1,509 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: bounce 2s infinite;
+}
+
+.header .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.game-area {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.2);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.game-area::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shine 3s infinite;
+    pointer-events: none;
+}
+
+.figure-container {
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.figure-container:hover {
+    transform: scale(1.05);
+}
+
+.figure {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: popIn 0.6s ease-out;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.figure::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.figure:hover::before {
+    transform: translateX(100%);
+}
+
+.figure.star {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.circle {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    border-radius: 50%;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.square {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    border-radius: 15px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.triangle {
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 120px solid currentColor;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.heart {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    clip-path: path('M60,30 C60,30 20,10 20,30 C20,50 60,70 60,70 C60,70 100,50 100,30 C100,10 60,30 60,30 Z');
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.diamond {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    transform: rotate(45deg);
+    border-radius: 10px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.hexagon {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.oval {
+    width: 140px;
+    height: 100px;
+    background: currentColor;
+    border-radius: 50%;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.pentagon {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.figure.octagon {
+    width: 120px;
+    height: 120px;
+    background: currentColor;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.info-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.current-info {
+    flex: 1;
+    text-align: left;
+}
+
+.figure-name, .color-name {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.color-name {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    font-weight: 600;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.control-btn:hover::before {
+    left: 100%;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    color: white;
+}
+
+.score {
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.score:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 6s infinite ease-in-out;
+    filter: blur(1px);
+}
+
+.floating-shape.shape-1 {
+    top: 10%;
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    animation-delay: 0s;
+}
+
+.floating-shape.shape-2 {
+    top: 20%;
+    right: 15%;
+    width: 40px;
+    height: 40px;
+    background: #4ecdc4;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation-delay: 1s;
+}
+
+.floating-shape.shape-3 {
+    bottom: 30%;
+    left: 20%;
+    width: 60px;
+    height: 60px;
+    background: #45b7d1;
+    border-radius: 15px;
+    animation-delay: 2s;
+}
+
+.floating-shape.shape-4 {
+    bottom: 20%;
+    right: 25%;
+    width: 45px;
+    height: 45px;
+    background: #96ceb4;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation-delay: 3s;
+}
+
+.floating-shape.shape-5 {
+    top: 60%;
+    left: 50%;
+    width: 35px;
+    height: 35px;
+    background: #feca57;
+    border-radius: 50%;
+    animation-delay: 4s;
+}
+
+/* Animaciones mejoradas */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(90deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-20px) rotate(120deg);
+    }
+    66% {
+        transform: translateY(10px) rotate(240deg);
+    }
+}
+
+/* Efectos de partículas para figuras */
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+.figure::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    animation: sparkle 2s infinite;
+    pointer-events: none;
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .header .subtitle {
+        font-size: 1rem;
+    }
+    
+    .game-area {
+        padding: 30px 20px;
+        margin: 0 10px;
+    }
+    
+    .figure {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .figure.triangle {
+        border-left-width: 50px;
+        border-right-width: 50px;
+        border-bottom-width: 100px;
+    }
+    
+    .figure.oval {
+        width: 120px !important;
+        height: 85px !important;
+    }
+    
+    .info-panel {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .current-info {
+        text-align: center;
+    }
+    
+    .figure-name, .color-name {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .game-area {
+        padding: 20px 15px;
+    }
+    
+    .figure {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .figure.triangle {
+        border-left-width: 40px;
+        border-right-width: 40px;
+        border-bottom-width: 80px;
+    }
+    
+    .figure.oval {
+        width: 100px !important;
+        height: 70px !important;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+} 
