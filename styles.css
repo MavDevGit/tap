@@ -72,8 +72,8 @@ body {
     pointer-events: none;
 }
 
-.figure-container {
-    min-height: 300px;
+.animal-container {
+    min-height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,115 +83,23 @@ body {
     transition: transform 0.3s ease;
 }
 
-.figure-container:hover {
-    transform: scale(1.05);
+.animal-container:hover {
+    transform: scale(1.02);
 }
 
-.figure {
-    position: relative;
+.animal-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     animation: popIn 0.6s ease-out;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
 }
 
-.figure::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.figure:hover::before {
-    transform: translateX(100%);
-}
-
-.figure.star {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.circle {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    border-radius: 50%;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.square {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    border-radius: 15px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.triangle {
-    width: 0;
-    height: 0;
-    border-left: 60px solid transparent;
-    border-right: 60px solid transparent;
-    border-bottom: 120px solid currentColor;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.heart {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    clip-path: path('M60,30 C60,30 20,10 20,30 C20,50 60,70 60,70 C60,70 100,50 100,30 C100,10 60,30 60,30 Z');
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.diamond {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    transform: rotate(45deg);
-    border-radius: 10px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.hexagon {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.oval {
-    width: 140px;
-    height: 100px;
-    background: currentColor;
-    border-radius: 50%;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.pentagon {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-.figure.octagon {
-    width: 120px;
-    height: 120px;
-    background: currentColor;
-    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+.animal-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
 }
 
 .info-panel {
@@ -207,7 +115,7 @@ body {
     text-align: left;
 }
 
-.figure-name, .color-name {
+.animal-name, .animal-sound {
     font-family: 'Fredoka One', cursive;
     font-size: 1.5rem;
     margin-bottom: 5px;
@@ -216,10 +124,11 @@ body {
     transition: all 0.3s ease;
 }
 
-.color-name {
+.animal-sound {
     font-size: 1.2rem;
     opacity: 0.8;
     font-weight: 600;
+    color: #666;
 }
 
 .controls {
@@ -287,7 +196,7 @@ body {
     transform: scale(1.05);
 }
 
-.floating-shapes {
+.floating-animals {
     position: fixed;
     top: 0;
     left: 0;
@@ -297,14 +206,14 @@ body {
     z-index: 1;
 }
 
-.floating-shape {
+.floating-animal {
     position: absolute;
     opacity: 0.1;
     animation: float 6s infinite ease-in-out;
     filter: blur(1px);
 }
 
-.floating-shape.shape-1 {
+.floating-animal.animal-1 {
     top: 10%;
     left: 10%;
     width: 50px;
@@ -314,7 +223,7 @@ body {
     animation-delay: 0s;
 }
 
-.floating-shape.shape-2 {
+.floating-animal.animal-2 {
     top: 20%;
     right: 15%;
     width: 40px;
@@ -324,7 +233,7 @@ body {
     animation-delay: 1s;
 }
 
-.floating-shape.shape-3 {
+.floating-animal.animal-3 {
     bottom: 30%;
     left: 20%;
     width: 60px;
@@ -334,7 +243,7 @@ body {
     animation-delay: 2s;
 }
 
-.floating-shape.shape-4 {
+.floating-animal.animal-4 {
     bottom: 20%;
     right: 25%;
     width: 45px;
@@ -344,7 +253,7 @@ body {
     animation-delay: 3s;
 }
 
-.floating-shape.shape-5 {
+.floating-animal.animal-5 {
     top: 60%;
     left: 50%;
     width: 35px;
@@ -402,7 +311,7 @@ body {
     }
 }
 
-/* Efectos de partículas para figuras */
+/* Efectos de partículas para animales */
 @keyframes sparkle {
     0%, 100% {
         opacity: 0;
@@ -414,7 +323,7 @@ body {
     }
 }
 
-.figure::after {
+.animal-image::after {
     content: '';
     position: absolute;
     top: -5px;
@@ -446,20 +355,9 @@ body {
         margin: 0 10px;
     }
     
-    .figure {
-        width: 100px !important;
-        height: 100px !important;
-    }
-    
-    .figure.triangle {
-        border-left-width: 50px;
-        border-right-width: 50px;
-        border-bottom-width: 100px;
-    }
-    
-    .figure.oval {
-        width: 120px !important;
-        height: 85px !important;
+    .animal-image {
+        width: 250px !important;
+        height: 250px !important;
     }
     
     .info-panel {
@@ -471,7 +369,7 @@ body {
         text-align: center;
     }
     
-    .figure-name, .color-name {
+    .animal-name, .animal-sound {
         font-size: 1.3rem;
     }
 }
@@ -485,20 +383,9 @@ body {
         padding: 20px 15px;
     }
     
-    .figure {
-        width: 80px !important;
-        height: 80px !important;
-    }
-    
-    .figure.triangle {
-        border-left-width: 40px;
-        border-right-width: 40px;
-        border-bottom-width: 80px;
-    }
-    
-    .figure.oval {
-        width: 100px !important;
-        height: 70px !important;
+    .animal-image {
+        width: 200px !important;
+        height: 200px !important;
     }
     
     .control-btn {

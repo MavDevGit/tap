@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Figuras para Niños</title>
+    <title>Juego de Animales para Niños</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -11,19 +11,19 @@
 <body>
     <div class="game-container">
         <div class="header">
-            <h1><i class="fas fa-star"></i> Juego de Figuras <i class="fas fa-star"></i></h1>
-            <p class="subtitle">¡Toca la pantalla para cambiar las figuras!</p>
+            <h1><i class="fas fa-paw"></i> Juego de Animales <i class="fas fa-paw"></i></h1>
+            <p class="subtitle">¡Toca la pantalla para ver diferentes animales!</p>
         </div>
         
         <div class="game-area" id="gameArea">
-            <div class="figure-container" id="figureContainer">
-                <!-- Las figuras se generarán dinámicamente -->
+            <div class="animal-container" id="animalContainer">
+                <!-- Los animales se generarán dinámicamente -->
             </div>
             
             <div class="info-panel">
                 <div class="current-info">
-                    <div class="figure-name" id="figureName">Estrella</div>
-                    <div class="color-name" id="colorName">Rojo</div>
+                    <div class="animal-name" id="animalName">Perro</div>
+                    <div class="animal-sound" id="animalSound">Guau guau</div>
                 </div>
                 
                 <div class="controls">
@@ -39,18 +39,18 @@
         
         <div class="footer">
             <div class="score">
-                <span>Figuras vistas: </span>
+                <span>Animales vistos: </span>
                 <span id="score">0</span>
             </div>
         </div>
     </div>
     
-    <div class="floating-shapes">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
-        <div class="floating-shape shape-5"></div>
+    <div class="floating-animals">
+        <div class="floating-animal animal-1"></div>
+        <div class="floating-animal animal-2"></div>
+        <div class="floating-animal animal-3"></div>
+        <div class="floating-animal animal-4"></div>
+        <div class="floating-animal animal-5"></div>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>

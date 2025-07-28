@@ -1,219 +1,126 @@
-class ShapeGame {
+class AnimalGame {
     constructor() {
-        this.currentFigureIndex = 0;
-        this.currentColorIndex = 0;
+        this.currentAnimalIndex = 0;
         this.score = 0;
         this.isPaused = false;
         this.tapCount = 0;
-        this.audioEnabled = true;
         
-        // Configuración de figuras mejoradas
-        this.figures = [
-            { name: 'Estrella', class: 'star', icon: '⭐', sound: 'star' },
-            { name: 'Círculo', class: 'circle', icon: '⭕', sound: 'circle' },
-            { name: 'Cuadrado', class: 'square', icon: '⬜', sound: 'square' },
-            { name: 'Triángulo', class: 'triangle', icon: '🔺', sound: 'triangle' },
-            { name: 'Corazón', class: 'heart', icon: '❤️', sound: 'heart' },
-            { name: 'Diamante', class: 'diamond', icon: '💎', sound: 'diamond' },
-            { name: 'Hexágono', class: 'hexagon', icon: '🔶', sound: 'hexagon' },
-            { name: 'Óvalo', class: 'oval', icon: '🥚', sound: 'oval' },
-            { name: 'Pentágono', class: 'pentagon', icon: '🔷', sound: 'pentagon' },
-            { name: 'Octágono', class: 'octagon', icon: '🛑', sound: 'octagon' }
-        ];
-        
-        // Configuración de colores mejorados
-        this.colors = [
-            { name: 'Rojo', value: '#ff6b6b', audio: 'rojo', sound: 'red' },
-            { name: 'Azul', value: '#4ecdc4', audio: 'azul', sound: 'blue' },
-            { name: 'Verde', value: '#96ceb4', audio: 'verde', sound: 'green' },
-            { name: 'Amarillo', value: '#feca57', audio: 'amarillo', sound: 'yellow' },
-            { name: 'Morado', value: '#a55eea', audio: 'morado', sound: 'purple' },
-            { name: 'Naranja', value: '#fd79a8', audio: 'naranja', sound: 'orange' },
-            { name: 'Rosa', value: '#ff9ff3', audio: 'rosa', sound: 'pink' },
-            { name: 'Turquesa', value: '#54a0ff', audio: 'turquesa', sound: 'turquoise' },
-            { name: 'Dorado', value: '#ffd93d', audio: 'dorado', sound: 'gold' },
-            { name: 'Plateado', value: '#c0c0c0', audio: 'plateado', sound: 'silver' }
+        // Configuración de animales con imágenes libres
+        this.animals = [
+            { 
+                name: 'Perro', 
+                sound: 'Guau guau', 
+                image: 'https://images.unsplash.com/photo-1547407139-3c921a66005c?w=400&h=400&fit=crop&crop=center',
+                audio: 'dog'
+            },
+            { 
+                name: 'Gato', 
+                sound: 'Miau miau', 
+                image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop&crop=center',
+                audio: 'cat'
+            },
+            { 
+                name: 'Vaca', 
+                sound: 'Muu muu', 
+                image: 'https://images.unsplash.com/photo-1546445317-29d911b6fa5f?w=400&h=400&fit=crop&crop=center',
+                audio: 'cow'
+            },
+            { 
+                name: 'Oveja', 
+                sound: 'Beee beee', 
+                image: 'https://images.unsplash.com/photo-1500595046743-cd271d694e30?w=400&h=400&fit=crop&crop=center',
+                audio: 'sheep'
+            },
+            { 
+                name: 'Pollo', 
+                sound: 'Pío pío', 
+                image: 'https://images.unsplash.com/photo-1563281577-a7be47e20d51?w=400&h=400&fit=crop&crop=center',
+                audio: 'chicken'
+            },
+            { 
+                name: 'Caballo', 
+                sound: 'Relincho', 
+                image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5f?w=400&h=400&fit=crop&crop=center',
+                audio: 'horse'
+            },
+            { 
+                name: 'Cerdo', 
+                sound: 'Oink oink', 
+                image: 'https://images.unsplash.com/photo-1589923188900-85dae523342b?w=400&h=400&fit=crop&crop=center',
+                audio: 'pig'
+            },
+            { 
+                name: 'Pato', 
+                sound: 'Cuac cuac', 
+                image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&h=400&fit=crop&crop=center',
+                audio: 'duck'
+            },
+            { 
+                name: 'Elefante', 
+                sound: 'Barrito', 
+                image: 'https://images.unsplash.com/photo-1557050543-4d5f2e07c5e7?w=400&h=400&fit=crop&crop=center',
+                audio: 'elephant'
+            },
+            { 
+                name: 'León', 
+                sound: 'Rugido', 
+                image: 'https://images.unsplash.com/photo-1549366021-9f761d450615?w=400&h=400&fit=crop&crop=center',
+                audio: 'lion'
+            },
+            { 
+                name: 'Tigre', 
+                sound: 'Rugido', 
+                image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=400&h=400&fit=crop&crop=center',
+                audio: 'tiger'
+            },
+            { 
+                name: 'Jirafa', 
+                sound: 'Sonido suave', 
+                image: 'https://images.unsplash.com/photo-1547721064-da2cf13ce3a5?w=400&h=400&fit=crop&crop=center',
+                audio: 'giraffe'
+            }
         ];
         
         // Inicializar elementos del DOM
-        this.figureContainer = document.getElementById('figureContainer');
-        this.figureName = document.getElementById('figureName');
-        this.colorName = document.getElementById('colorName');
+        this.animalContainer = document.getElementById('animalContainer');
+        this.animalName = document.getElementById('animalName');
+        this.animalSound = document.getElementById('animalSound');
         this.scoreElement = document.getElementById('score');
         this.soundBtn = document.getElementById('soundBtn');
         this.pauseBtn = document.getElementById('pauseBtn');
         this.gameArea = document.getElementById('gameArea');
         
-        // Inicializar audio mejorado con múltiples opciones
-        this.initAdvancedAudio();
+        // Inicializar audio
+        this.initAudio();
         
         // Configurar eventos
         this.setupEventListeners();
         
-        // Mostrar primera figura
-        this.showCurrentFigure();
+        // Mostrar primer animal
+        this.showCurrentAnimal();
     }
     
-    initAdvancedAudio() {
+    initAudio() {
         // Crear audio context para síntesis de voz
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         
-        // Configurar múltiples opciones de TTS
-        this.setupMultipleTTS();
-        
-        // Pre-cargar sonidos naturales
-        this.loadNaturalSounds();
-        
-        // Configurar Azure Speech Services (opcional)
-        this.setupAzureSpeech();
-    }
-    
-    setupMultipleTTS() {
-        // Configurar síntesis de voz mejorada
+        // Configurar síntesis de voz
         this.speechSynthesis = window.speechSynthesis;
         this.voice = null;
-        this.ttsOptions = {
-            current: 'web-speech', // 'web-speech', 'azure', 'elevenlabs', 'openai'
-            voices: []
-        };
         
         // Esperar a que las voces estén disponibles
         if (this.speechSynthesis.onvoiceschanged !== undefined) {
             this.speechSynthesis.onvoiceschanged = () => {
                 const voices = this.speechSynthesis.getVoices();
-                this.ttsOptions.voices = voices;
-                
-                // Buscar las mejores voces en español
-                const spanishVoices = voices.filter(voice => 
+                // Buscar voz en español
+                this.voice = voices.find(voice => 
                     voice.lang.includes('es') || voice.lang.includes('ES')
-                );
-                
-                // Priorizar voces de alta calidad
-                this.voice = spanishVoices.find(voice => 
-                    voice.name.includes('Google') || 
-                    voice.name.includes('Natural') ||
-                    voice.name.includes('Premium')
-                ) || spanishVoices.find(voice => 
-                    voice.name.includes('Microsoft') ||
-                    voice.name.includes('Samantha')
-                ) || spanishVoices[0] || voices[0];
-                
-                console.log('Voces disponibles:', voices.map(v => `${v.name} (${v.lang})`));
-                console.log('Voz seleccionada:', this.voice?.name);
+                ) || voices[0];
             };
         }
-    }
-    
-    setupAzureSpeech() {
-        // Configuración para Azure Speech Services (requiere suscripción)
-        this.azureConfig = {
-            subscriptionKey: '', // Agregar tu clave de Azure
-            region: 'eastus',
-            voiceName: 'es-ES-ElviraNeural', // Voz neural en español
-            endpoint: ''
-        };
         
-        // Función para usar Azure Speech Services
-        this.speakWithAzure = async (text) => {
-            if (!this.azureConfig.subscriptionKey) return false;
-            
-            try {
-                const response = await fetch(`https://${this.azureConfig.region}.tts.speech.microsoft.com/cognitiveservices/v1`, {
-                    method: 'POST',
-                    headers: {
-                        'Ocp-Apim-Subscription-Key': this.azureConfig.subscriptionKey,
-                        'Content-Type': 'application/ssml+xml',
-                        'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3'
-                    },
-                    body: `<speak version='1.0' xml:lang='es-ES'>
-                        <voice xml:lang='es-ES' xml:gender='Female' name='${this.azureConfig.voiceName}'>
-                            ${text}
-                        </voice>
-                    </speak>`
-                });
-                
-                if (response.ok) {
-                    const audioBlob = await response.blob();
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    const audio = new Audio(audioUrl);
-                    audio.play();
-                    return true;
-                }
-            } catch (error) {
-                console.error('Error con Azure Speech:', error);
-            }
-            return false;
-        };
-    }
-    
-    // Función para usar ElevenLabs (requiere API key)
-    async speakWithElevenLabs(text) {
-        const apiKey = ''; // Agregar tu API key de ElevenLabs
-        if (!apiKey) return false;
-        
-        try {
-            const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'audio/mpeg',
-                    'Content-Type': 'application/json',
-                    'xi-api-key': apiKey
-                },
-                body: JSON.stringify({
-                    text: text,
-                    model_id: 'eleven_multilingual_v2',
-                    voice_settings: {
-                        stability: 0.5,
-                        similarity_boost: 0.5
-                    }
-                })
-            });
-            
-            if (response.ok) {
-                const audioBlob = await response.blob();
-                const audioUrl = URL.createObjectURL(audioBlob);
-                const audio = new Audio(audioUrl);
-                audio.play();
-                return true;
-            }
-        } catch (error) {
-            console.error('Error con ElevenLabs:', error);
-        }
-        return false;
-    }
-    
-    // Función para usar OpenAI TTS (requiere API key)
-    async speakWithOpenAI(text) {
-        const apiKey = ''; // Agregar tu API key de OpenAI
-        if (!apiKey) return false;
-        
-        try {
-            const response = await fetch('https://api.openai.com/v1/audio/speech', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    model: 'tts-1',
-                    input: text,
-                    voice: 'alloy', // alloy, echo, fable, onyx, nova, shimmer
-                    response_format: 'mp3',
-                    speed: 0.8
-                })
-            });
-            
-            if (response.ok) {
-                const audioBlob = await response.blob();
-                const audioUrl = URL.createObjectURL(audioBlob);
-                const audio = new Audio(audioUrl);
-                audio.play();
-                return true;
-            }
-        } catch (error) {
-            console.error('Error con OpenAI TTS:', error);
-        }
-        return false;
+        // Pre-cargar sonidos naturales
+        this.loadNaturalSounds();
     }
     
     loadNaturalSounds() {
@@ -237,12 +144,10 @@ class ShapeGame {
             filter.connect(gainNode);
             gainNode.connect(this.audioContext.destination);
             
-            // Configurar filtro para sonido más natural
             filter.type = 'lowpass';
             filter.frequency.setValueAtTime(2000, this.audioContext.currentTime);
             filter.Q.setValueAtTime(0.5, this.audioContext.currentTime);
             
-            // Frecuencia variable para sonido más orgánico
             oscillator.frequency.setValueAtTime(600, this.audioContext.currentTime);
             oscillator.frequency.exponentialRampToValueAtTime(300, this.audioContext.currentTime + 0.15);
             
@@ -357,7 +262,7 @@ class ShapeGame {
     setupEventListeners() {
         // Evento de tap/clic en el área de juego
         this.gameArea.addEventListener('click', (e) => {
-            if (e.target.closest('.control-btn')) return; // No procesar clics en botones
+            if (e.target.closest('.control-btn')) return;
             this.handleTap();
         });
         
@@ -386,8 +291,6 @@ class ShapeGame {
                 this.playCurrentAudio();
             } else if (e.code === 'KeyP') {
                 this.togglePause();
-            } else if (e.code === 'KeyT') {
-                this.toggleTTSProvider();
             }
         });
     }
@@ -397,28 +300,26 @@ class ShapeGame {
         
         this.tapCount++;
         
-        // Efecto visual de tap mejorado
+        // Efecto visual de tap
         this.createTapEffect();
         
-        // Reproducir sonido de tap mejorado
+        // Reproducir sonido de tap
         this.playEnhancedTapSound();
         
         if (this.tapCount === 1) {
-            // Primer tap: cambiar color
-            this.changeColor();
+            // Primer tap: cambiar animal
+            this.changeAnimal();
             this.playCurrentAudio();
         } else if (this.tapCount === 2) {
-            // Segundo tap: cambiar figura
-            this.changeFigure();
+            // Segundo tap: mostrar información adicional
+            this.showAnimalInfo();
             this.tapCount = 0;
             this.score++;
             this.updateScore();
-            this.playCurrentAudio();
         }
     }
     
     playEnhancedTapSound() {
-        // Usar sonido natural en lugar del básico
         if (this.naturalSounds.tap) {
             this.naturalSounds.tap();
         }
@@ -436,7 +337,6 @@ class ShapeGame {
             z-index: 1000;
         `;
         
-        // Posicionar el efecto donde se hizo clic
         const rect = this.gameArea.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         ripple.style.width = ripple.style.height = size + 'px';
@@ -445,7 +345,6 @@ class ShapeGame {
         
         this.gameArea.appendChild(ripple);
         
-        // Agregar animación CSS mejorada
         const style = document.createElement('style');
         style.textContent = `
             @keyframes ripple {
@@ -470,90 +369,75 @@ class ShapeGame {
         }, 800);
     }
     
-    changeColor() {
-        this.currentColorIndex = (this.currentColorIndex + 1) % this.colors.length;
-        this.showCurrentFigure();
+    changeAnimal() {
+        this.currentAnimalIndex = (this.currentAnimalIndex + 1) % this.animals.length;
+        this.showCurrentAnimal();
     }
     
-    changeFigure() {
-        this.currentFigureIndex = (this.currentFigureIndex + 1) % this.figures.length;
-        this.showCurrentFigure();
-    }
-    
-    showCurrentFigure() {
-        const currentFigure = this.figures[this.currentFigureIndex];
-        const currentColor = this.colors[this.currentColorIndex];
+    showCurrentAnimal() {
+        const currentAnimal = this.animals[this.currentAnimalIndex];
         
         // Limpiar contenedor
-        this.figureContainer.innerHTML = '';
+        this.animalContainer.innerHTML = '';
         
-        // Crear nueva figura con efectos mejorados
-        const figureElement = document.createElement('div');
-        figureElement.className = `figure ${currentFigure.class}`;
-        figureElement.style.color = currentColor.value;
-        
-        // Efectos de brillo y sombra mejorados
-        figureElement.style.boxShadow = `
-            0 0 30px ${currentColor.value}40,
-            0 8px 32px rgba(0,0,0,0.1),
-            inset 0 1px 0 rgba(255,255,255,0.2)
+        // Crear imagen del animal
+        const animalImage = document.createElement('img');
+        animalImage.src = currentAnimal.image;
+        animalImage.alt = currentAnimal.name;
+        animalImage.className = 'animal-image';
+        animalImage.style.cssText = `
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: popIn 0.6s ease-out;
         `;
         
-        // Agregar gradiente interno para figuras más realistas
-        figureElement.style.background = `linear-gradient(135deg, ${currentColor.value} 0%, ${this.adjustBrightness(currentColor.value, 1.2)} 50%, ${this.adjustBrightness(currentColor.value, 0.8)} 100%)`;
-        
-        this.figureContainer.appendChild(figureElement);
+        this.animalContainer.appendChild(animalImage);
         
         // Actualizar información
-        this.figureName.textContent = currentFigure.name;
-        this.colorName.textContent = currentColor.name;
-        this.colorName.style.color = currentColor.value;
+        this.animalName.textContent = currentAnimal.name;
+        this.animalSound.textContent = currentAnimal.sound;
     }
     
-    adjustBrightness(hex, factor) {
-        // Función para ajustar el brillo de un color
-        const r = parseInt(hex.slice(1, 3), 16);
-        const g = parseInt(hex.slice(3, 5), 16);
-        const b = parseInt(hex.slice(5, 7), 16);
+    showAnimalInfo() {
+        const currentAnimal = this.animals[this.currentAnimalIndex];
         
-        const newR = Math.min(255, Math.round(r * factor));
-        const newG = Math.min(255, Math.round(g * factor));
-        const newB = Math.min(255, Math.round(b * factor));
+        // Crear información adicional
+        const info = document.createElement('div');
+        info.className = 'animal-info';
+        info.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: popIn 0.3s ease-out;
+        `;
         
-        return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+        info.innerHTML = `
+            <h3 style="margin: 0 0 10px 0; color: #333;">${currentAnimal.name}</h3>
+            <p style="margin: 0; color: #666;">Sonido: ${currentAnimal.sound}</p>
+        `;
+        
+        this.gameArea.appendChild(info);
+        
+        setTimeout(() => {
+            info.remove();
+        }, 2000);
     }
     
-    async playCurrentAudio() {
-        const currentFigure = this.figures[this.currentFigureIndex];
-        const currentColor = this.colors[this.currentColorIndex];
+    playCurrentAudio() {
+        const currentAnimal = this.animals[this.currentAnimalIndex];
         
-        const text = `Es una ${currentFigure.name} de color ${currentColor.name}`;
+        const text = `Es un ${currentAnimal.name}. Hace ${currentAnimal.sound}`;
         
-        // Intentar diferentes proveedores de TTS en orden de calidad
-        let success = false;
-        
-        // 1. Intentar OpenAI TTS (mejor calidad)
-        if (this.ttsOptions.current === 'openai') {
-            success = await this.speakWithOpenAI(text);
-        }
-        
-        // 2. Intentar ElevenLabs (muy buena calidad)
-        if (!success && this.ttsOptions.current === 'elevenlabs') {
-            success = await this.speakWithElevenLabs(text);
-        }
-        
-        // 3. Intentar Azure Speech Services
-        if (!success && this.ttsOptions.current === 'azure') {
-            success = await this.speakWithAzure(text);
-        }
-        
-        // 4. Usar Web Speech API como fallback
-        if (!success) {
-            this.speakWithWebSpeech(text);
-        }
-    }
-    
-    speakWithWebSpeech(text) {
         if (this.speechSynthesis && this.speechSynthesis.speaking) {
             this.speechSynthesis.cancel();
         }
@@ -561,45 +445,12 @@ class ShapeGame {
         if (this.speechSynthesis) {
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.voice = this.voice;
-            utterance.rate = 0.75; // Más lento para mejor comprensión
-            utterance.pitch = 1.1; // Tono ligeramente más alto
+            utterance.rate = 0.75;
+            utterance.pitch = 1.1;
             utterance.volume = 0.9;
-            utterance.lang = 'es-ES'; // Especificar idioma español
+            utterance.lang = 'es-ES';
             this.speechSynthesis.speak(utterance);
         }
-    }
-    
-    toggleTTSProvider() {
-        const providers = ['web-speech', 'openai', 'elevenlabs', 'azure'];
-        const currentIndex = providers.indexOf(this.ttsOptions.current);
-        const nextIndex = (currentIndex + 1) % providers.length;
-        this.ttsOptions.current = providers[nextIndex];
-        
-        console.log(`Cambiando a proveedor de TTS: ${this.ttsOptions.current}`);
-        
-        // Mostrar notificación visual
-        this.showNotification(`Voz: ${this.ttsOptions.current}`);
-    }
-    
-    showNotification(message) {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 10000;
-            font-family: 'Nunito', sans-serif;
-        `;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 2000);
     }
     
     togglePause() {
@@ -620,21 +471,18 @@ class ShapeGame {
     updateScore() {
         this.scoreElement.textContent = this.score;
         
-        // Efecto de celebración cuando se alcanzan ciertos números
         if (this.score % 5 === 0) {
             this.celebrate();
         }
     }
     
     celebrate() {
-        // Crear confeti mejorado
         for (let i = 0; i < 30; i++) {
             setTimeout(() => {
                 this.createEnhancedConfetti();
             }, i * 80);
         }
         
-        // Reproducir sonido de celebración mejorado
         this.playEnhancedCelebrationSound();
     }
     
@@ -661,7 +509,6 @@ class ShapeGame {
         
         document.body.appendChild(confetti);
         
-        // Agregar animación CSS mejorada si no existe
         if (!document.querySelector('#enhanced-confetti-style')) {
             const style = document.createElement('style');
             style.id = 'enhanced-confetti-style';
@@ -689,12 +536,10 @@ class ShapeGame {
     }
     
     playEnhancedCelebrationSound() {
-        // Usar sonido de campana mejorado
         if (this.naturalSounds.bell) {
             this.naturalSounds.bell();
         }
         
-        // Seguido de chime
         setTimeout(() => {
             if (this.naturalSounds.chime) {
                 this.naturalSounds.chime();
@@ -705,7 +550,7 @@ class ShapeGame {
 
 // Inicializar el juego cuando se carga la página
 document.addEventListener('DOMContentLoaded', () => {
-    window.game = new ShapeGame();
+    window.game = new AnimalGame();
 });
 
 // Manejar la activación del audio context en dispositivos móviles
