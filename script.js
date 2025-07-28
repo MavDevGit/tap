@@ -11,72 +11,84 @@ class AnimalGame {
                 name: 'Perro', 
                 sound: 'Guau guau', 
                 image: 'https://images.unsplash.com/photo-1547407139-3c921a66005c?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'dog'
             },
             { 
                 name: 'Gato', 
                 sound: 'Miau miau', 
                 image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'cat'
             },
             { 
                 name: 'Vaca', 
                 sound: 'Muu muu', 
                 image: 'https://images.unsplash.com/photo-1546445317-29d911b6fa5f?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/735968/pexels-photo-735968.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'cow'
             },
             { 
                 name: 'Oveja', 
                 sound: 'Beee beee', 
                 image: 'https://images.unsplash.com/photo-1500595046743-cd271d694e30?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/735968/pexels-photo-735968.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'sheep'
             },
             { 
                 name: 'Pollo', 
                 sound: 'Pío pío', 
                 image: 'https://images.unsplash.com/photo-1563281577-a7be47e20d51?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/162240/chicken-bird-farm-animal-162240.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'chicken'
             },
             { 
                 name: 'Caballo', 
                 sound: 'Relincho', 
                 image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5f?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'horse'
             },
             { 
                 name: 'Cerdo', 
                 sound: 'Oink oink', 
                 image: 'https://images.unsplash.com/photo-1589923188900-85dae523342b?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/735968/pexels-photo-735968.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'pig'
             },
             { 
                 name: 'Pato', 
                 sound: 'Cuac cuac', 
                 image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/162240/chicken-bird-farm-animal-162240.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'duck'
             },
             { 
                 name: 'Elefante', 
                 sound: 'Barrito', 
                 image: 'https://images.unsplash.com/photo-1557050543-4d5f2e07c5e7?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'elephant'
             },
             { 
                 name: 'León', 
                 sound: 'Rugido', 
                 image: 'https://images.unsplash.com/photo-1549366021-9f761d450615?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'lion'
             },
             { 
                 name: 'Tigre', 
                 sound: 'Rugido', 
                 image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'tiger'
             },
             { 
                 name: 'Jirafa', 
                 sound: 'Sonido suave', 
                 image: 'https://images.unsplash.com/photo-1547721064-da2cf13ce3a5?w=400&h=400&fit=crop&crop=center',
+                fallbackImage: 'https://images.pexels.com/photos/735968/pexels-photo-735968.jpeg?w=400&h=400&fit=crop&crop=center',
                 audio: 'giraffe'
             }
         ];
@@ -394,6 +406,24 @@ class AnimalGame {
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             animation: popIn 0.6s ease-out;
         `;
+        
+        // Manejar error de imagen con fallback
+        animalImage.onerror = () => {
+            if (currentAnimal.fallbackImage) {
+                animalImage.src = currentAnimal.fallbackImage;
+            } else {
+                // Si no hay fallback, mostrar placeholder
+                animalImage.style.background = `linear-gradient(135deg, #667eea, #764ba2)`;
+                animalImage.style.display = 'flex';
+                animalImage.style.alignItems = 'center';
+                animalImage.style.justifyContent = 'center';
+                animalImage.style.color = 'white';
+                animalImage.style.fontSize = '2rem';
+                animalImage.style.fontFamily = 'Fredoka One, cursive';
+                animalImage.textContent = currentAnimal.name.charAt(0);
+                animalImage.src = '';
+            }
+        };
         
         this.animalContainer.appendChild(animalImage);
         
